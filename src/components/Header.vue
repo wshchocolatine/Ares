@@ -5,16 +5,16 @@
       <Logo />
       <nav class="right flex flex-col md:flex-row items-center hidden md:inline-block">
         <div class="flex text-lg">
-          <nuxt-link class="nav-link" to="/about" :class="{ 'link-active': isWindow('about') }">
+          <nuxt-link class="nav-link" to="/about">
             {{ $t('header.about') }}
           </nuxt-link>
-          <nuxt-link class="nav-link" to="/blog" :class="{ 'link-active': isWindow('blog') }">
+          <nuxt-link class="nav-link" to="/blog">
             {{ $t('header.blog') }}
           </nuxt-link>
-          <nuxt-link class="nav-link" to="/projects" :class="{ 'link-active': isWindow('projects') }">
+          <nuxt-link class="nav-link" to="/projects">
             {{ $t('header.projects') }}
           </nuxt-link>
-          <nuxt-link class="nav-link" to="/contact" :class="{ 'link-active': isWindow('contact') }">
+          <nuxt-link class="nav-link" to="/contact">
             {{ $t('header.contact') }}
           </nuxt-link>
         </div>
@@ -85,20 +85,10 @@ export default defineComponent({
     })
     const isFrench = computed(() => i18n.locale === 'fr')
 
-    const store = useStore<State>()
-    const route = computed(() => store.state.route)
-
-    const isWindow = (loc: string) => {
-      if (loc === '') return route.value === "/"
-      else return route.value.includes(loc)
-    }
-
     return {
       scrollPosition,
       changeColorMode,
-      updateScroll,
       changeLanguage,
-      isWindow,
       isFrench
     }
   }
